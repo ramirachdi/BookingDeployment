@@ -23,7 +23,7 @@ pipeline {
         stage('Push Frontend') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-frontend') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-frontend') {
                         docker.image("${FRONTEND_IMAGE}:${env.BUILD_ID}").push()
                     }
                 }
@@ -41,7 +41,7 @@ pipeline {
         stage('Push Backend') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-backend') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-backend') {
                         docker.image("${BACKEND_IMAGE}:${env.BUILD_ID}").push()
                     }
                 }
