@@ -15,6 +15,7 @@ pipeline {
             steps {
                 script {
                     dir('BookingFrontend') {
+                        // Ensure Docker Pipeline plugin is installed and Docker is correctly configured
                         docker.build("${FRONTEND_IMAGE}:${env.BUILD_ID}")
                     }
                 }
@@ -47,18 +48,5 @@ pipeline {
                 }
             }
         }
-        // stage('Deploy') {
-        //     steps {
-        //         sshagent(credentials: ['deployment-server-ssh']) {
-        //             script {
-        //                 sh "scp docker-compose.yml user@production-server:/path/to/app"
-        //                 sh "ssh user@production-server 'cd /path/to/app && docker-compose pull && docker-compose up -d'"
-        //             }
-        //         }
-        //     }
-        // }
     }
 }
-
-
-
