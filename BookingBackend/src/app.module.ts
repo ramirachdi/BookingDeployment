@@ -15,6 +15,9 @@ import { MessagesModule } from './messages/messages.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { SseModule } from './sse/sse.module';
 import * as dotenv from 'dotenv'
+import { PrometheusModule } from '@willsoto/nestjs-prometheus';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { LoggingInterceptor } from './logging.interceptor';
 
 dotenv.config();
 
@@ -43,8 +46,17 @@ dotenv.config();
     MessagesModule,
     EventEmitterModule.forRoot(),
     SseModule,
+    PrometheusModule.register()
   ],
   controllers: [AppController],
-  providers: [AppService, ChatGateway],
+  providers: [
+    AppService,
+    ChatGateway,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor
+    }
+
+  ],
 })
 export class AppModule { }
