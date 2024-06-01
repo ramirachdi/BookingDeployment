@@ -8,7 +8,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Cloning the BookingDeployment repository
-                git credentialsId: 'githubtoken', url: 'https://github.com/ramirachdi/BookingDeployment.git'
+                git branch: 'main', credentialsId: 'githubtoken', url: 'https://github.com/ramirachdi/BookingDeployment.git'
             }
         }
         stage('Build Frontend') {
@@ -59,3 +59,6 @@ pipeline {
         // }
     }
 }
+
+
+
