@@ -15,7 +15,6 @@ pipeline {
             steps {
                 script {
                     dir('BookingFrontend') {
-                        // Ensure Docker Pipeline plugin is installed and Docker is correctly configured
                         docker.build("${FRONTEND_IMAGE}:${env.BUILD_ID}")
                     }
                 }
