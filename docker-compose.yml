@@ -22,7 +22,7 @@ services:
     ports:
       - "3001:3001" 
     depends_on:
-      - booking-backend 
+      - booking-backend # Assuming the frontend needs to communicate with the backend
     networks:
       - monitoring
 
