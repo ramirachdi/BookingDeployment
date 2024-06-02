@@ -8,9 +8,10 @@ services:
     ports:
       - "3000:3000" # Adjust if your backend runs on a different port
     environment:
-      - DATABASE_URL=mysql://root:root@db:3307/booking
+      - DATABASE_URL=mysql://admin:root@db:3307/booking
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - monitoring  
 
@@ -22,6 +23,8 @@ services:
       - "3001:3001" # Standard ReactJS port
     depends_on:
       - booking-backend # Assuming the frontend needs to communicate with the backend
+    networks:
+      - monitoring
 
   db:
     image: mysql:8.0
@@ -30,14 +33,20 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=booking
-      - MYSQL_USER=mysql
+      - MYSQL_USER=admin
       - MYSQL_PASSWORD=root
-      - MYSQL_ROOT_HOST=booking
+      - MYSQL_ROOT_HOST=db
       - MYSQL_TCP_PORT=3307
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
-      - monitoring  
+      - monitoring
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost --silent"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
 
   prometheus:
     image: prom/prometheus
