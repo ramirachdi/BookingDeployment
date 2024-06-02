@@ -6,7 +6,7 @@ services:
     env_file:
       - ./BookingBackend/.env
     ports:
-      - "3000:3000" # Adjust if your backend runs on a different port
+      - "3000:3000" 
     environment:
       - DATABASE_URL=mysql://admin:root@db:3307/booking
     depends_on:
@@ -20,9 +20,9 @@ services:
       context: ./BookingFrontend
       dockerfile: Dockerfile
     ports:
-      - "3001:3001" # Standard ReactJS port
+      - "3001:3001" 
     depends_on:
-      - booking-backend # Assuming the frontend needs to communicate with the backend
+      - booking-backend 
     networks:
       - monitoring
 
