@@ -6,7 +6,7 @@ import FavoritesPage from "./pages/favorites";
 import ReservationsPage from "./pages/reservations";
 import InfoPage from "./pages/info";
 import Profile from "./pages/profile";
-
+//nn
 function App() {
   return (
     <BrowserRouter>
