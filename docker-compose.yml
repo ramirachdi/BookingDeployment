@@ -8,9 +8,11 @@ services:
     ports:
       - "3000:3000" # Adjust if your backend runs on a different port
     environment:
-      - DATABASE_URL=mysql://root:root@db:3306/booking
+      - DATABASE_URL=mysql://root:root@db:3307/booking
     depends_on:
       - db
+    networks:
+      - monitoring  
 
   booking-frontend:
     build:
@@ -24,16 +26,18 @@ services:
   db:
     image: mysql:8.0
     ports:
-      - "3307:3306"
+      - "3307:3307"
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=booking
-      - MYSQL_USER=root
+      - MYSQL_USER=mysql
       - MYSQL_PASSWORD=root
       - MYSQL_ROOT_HOST=booking
-      - MYSQL_TCP_PORT=3306
+      - MYSQL_TCP_PORT=3307
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - monitoring  
 
   prometheus:
     image: prom/prometheus
