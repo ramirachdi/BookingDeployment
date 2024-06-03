@@ -38,7 +38,7 @@ services:
       - MYSQL_ROOT_HOST=db
       - MYSQL_TCP_PORT=3307
     volumes:
-      - mysqldata:/var/lib/mysql
+      - db:/var/lib/mysql
     networks:
       - monitoring
     healthcheck:
@@ -48,27 +48,8 @@ services:
       start_period: 30s
       timeout: 5s
 
-  prometheus:
-    image: prom/prometheus
-    container_name: prometheus
-    volumes:
-      - anas:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
-    networks:
-      - monitoring
-
 volumes:
-  mysqldata:
-    driver: azure_file
-    driver_opts:
-      share_name: mysqldata
-      storage_account_name: myaccount
-  anas:    
-    driver: azure_file
-    driver_opts:
-      share_name: anas
-      storage_account_name: myaccount
+  db:
 
 networks:
   monitoring:
