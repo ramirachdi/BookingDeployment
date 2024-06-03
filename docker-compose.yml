@@ -62,12 +62,12 @@ volumes:
   mysql_data:
     driver: azure_file
     driver_opts:
-      share_name: mysql
+      share_name: mysql_data
       storage_account_name: myaccount
   anas:    
     driver: azure_file
     driver_opts:
-      share_name: prometheus
+      share_name: anas
       storage_account_name: myaccount
 
 networks:
