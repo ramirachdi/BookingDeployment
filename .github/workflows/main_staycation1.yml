@@ -52,4 +52,4 @@ jobs:
           images: |
             ramirachdi/booking-frontend:latest
             ramirachdi/booking-backend:latest
-          docker-compose-file: 'docker-compose.yml'  # Include the docker-compose file for multi-container deployment
+          configuration-file: 'docker-compose.yml'  # Include the docker-compose file for multi-container deployment
