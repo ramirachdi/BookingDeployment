@@ -47,6 +47,6 @@ jobs:
           app-name: 'StayCation1'
           slot-name: 'Production'
           images: |
-            DOCKER_USERNAME/booking-frontend:latest
-            DOCKER_USERNAME/booking-backend:latest
-            DOCKER_USERNAME/db:latest
+            ramirachdi/booking-frontend:latest
+            ramirachdi/booking-backend:latest
+            ramirachdi/db:latest
