@@ -59,10 +59,10 @@ services:
       - monitoring
 
 volumes:
-  mysql_data:
+  mysqldata:
     driver: azure_file
     driver_opts:
-      share_name: mysql_data
+      share_name: mysqldata
       storage_account_name: myaccount
   anas:    
     driver: azure_file
