@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                // Cloning the BookingDeployment repository
+                
                 git branch: 'main', credentialsId: 'githubtoken', url: 'https://github.com/ramirachdi/BookingDeployment.git'
             }
         }
