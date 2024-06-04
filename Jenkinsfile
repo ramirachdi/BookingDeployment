@@ -17,7 +17,7 @@ pipeline {
                     changeset "BookingFrontend/**"
                     changeset "Jenkinsfile"
                 }
-            }
+            }//,
             steps {
                 script {
                     dir('BookingFrontend') {
